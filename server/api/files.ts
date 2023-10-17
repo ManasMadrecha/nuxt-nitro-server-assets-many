@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     fileNames.length = Math.min(limit, fileNames.length)
     const files = []
     for (const fileName of fileNames) {
-      const file = await useStorage().getItem(fileName)
+      const file = await useStorage('assets:server').getItem(fileName)
       if (!file) continue
       files.push(file)
     }
@@ -18,6 +18,6 @@ export default defineEventHandler(async (event) => {
       countFileNames: fileNames?.length,
       countFiles: files?.length,
       fileNames: fileNames,
-      // files: files,
+      files: files,
     }
   })
